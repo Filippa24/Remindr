@@ -1,0 +1,521 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--secondaryFont);
+}
+
+:root {
+  /* färgvariabler */
+  --primaryLight: #fffdfa;
+  --primaryDark: #291d02;
+  --heroOrange: #d78c42;
+  --heroAqua: #18d1d4;
+  --hoverAqua: #18d1d498;
+  --hoverAquaText: #0cbec1;
+  --hoverOrange: #d78c42b7;
+  --hoverOrangeText: #b5610d;
+  --textareaOrange: #f7e3cfb7;
+
+  --shadowSplash: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  /* --shadowText: 1px 1px 1px rgba(0, 0, 0, 0.3); */
+  --shadowBox: 3px 3px 5px rgba(0, 0, 0, 0.3);
+
+  /* typografivariabler */
+  --primaryFont: "Italiana", sans-serif;
+  --secondaryFont: "EB Garamond", serif;
+  --accentFont: "Poppins", sans-serif;
+
+  --font-size-XS: 1rem;
+  --font-size-S: 1.25rem;
+  --font-size-M: 1.75rem;
+
+  --bold: 900;
+  --semiBold: 600;
+}
+
+/* sätter basstorlek på hela dokumentet, detta är lika med 1rem, så när vi sätter rem på andra ställen skalas elementen jämnt och proportionellt
+alla rem framöver ökar proportionerligt enligt det som är satt nedan:
+16px i html = 1rem 
+1.5rem = 24px (16px + en halv (0.5) = 16/2 = 8. 16px (1rem) + 8px (0.5rem)
+2rem = 32px
+3rem = 48px */
+html {
+  font-size: 16px;
+}
+
+/* SPLASH------------------------------------- */
+
+body {
+  /* background: var(--secondayFont); */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--primaryLight);
+}
+
+.splash__title {
+  font-family: var(--primaryFont);
+  color: var(--primaryDark);
+  text-shadow: var(--shadowSplash);
+  padding: 0 5vw;
+  /* måste ha ett fast storleksvärde (vw) i mitten av parentesen nedan för att texten ska kunna skalas mellan storlekar */
+  font-size: clamp(2rem, 20vw, 20rem);
+}
+
+.splash {
+  display: flex;
+  justify-content: center; /* horisontellt */
+  align-items: center; /* vertikalt */
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  background-image: url("Media/ReminderSplash.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  z-index: 9999;
+
+  /* animation för splashen att fade ut */
+  animation: fadeOut 1s ease forwards;
+  animation-delay: 2s;
+}
+
+/* animation för splashen att fade ut */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* STARTPAGE------------------------------------------ */
+
+.home__navbar {
+  height: 4vh;
+  display: flex;
+  justify-content: center; /* horisontellt */
+}
+
+.home__navbar--links {
+  display: flex;
+  justify-content: center; /* horisontellt */
+  align-items: center; /* vertikalt */
+  gap: 1rem;
+  font-size: var(--font-size-M);
+}
+
+.addIcon:hover {
+  cursor: pointer;
+}
+
+.deleteIcon:hover {
+  cursor: pointer;
+}
+
+.markDoneIcon:hover {
+  cursor: pointer;
+}
+
+/* navbar buttons guidelines: */
+.guidelines__delete,
+.guidelines__markDone {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  /* sätter elementet 15% ner från sidans topp */
+  top: 15%;
+  /* sätter elementet 50% in från vänster sida vilket innebär att elementets vänstra kant blir centrerad till mitten vågrätt */
+  left: 50%;
+  /* detta flyttar tillbaka elementet 50% av sin bredd så det blir helt centrerat vågrätt */
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.guidelines__markDone {
+  display: none;
+}
+
+/* vill inte ha punkt framför, som är standard för lista */
+ul {
+  list-style: none;
+}
+
+.notes__list li:hover {
+  cursor: pointer;
+}
+
+a {
+  color: var(--primaryDark);
+  text-shadow: var(--shadowBox);
+}
+
+a:hover {
+  transform: scale(1.2);
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 70px 0 70px 0;
+}
+
+.notes {
+  display: flex;
+  justify-content: center; /*horisontellt*/
+  flex-direction: column;
+}
+
+.notes__container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 5vw;
+  box-sizing: border-box;
+}
+
+.task {
+  width: 100%;
+  text-align: center;
+  font-size: var(--font-size-S);
+  word-break: break-word;
+}
+
+.custom__select {
+  position: relative;
+  width: 100%;
+}
+
+/* > gör att detta bara gäller i home, inte grid */
+.home > .custom__select {
+  max-width: 300px;
+  width: 100%;
+}
+
+.custom__select--heading {
+  font-family: var(--primaryFont);
+  font-size: var(--font-size-M);
+  text-shadow: var(--shadowText);
+}
+
+.custom__select--btn,
+.noBtn,
+.yesBtn {
+  transition: background-color 0.25s ease;
+  background-color: var(--heroOrange);
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: var(--shadowBox);
+  height: 6vh;
+  line-height: 6vh;
+  width: 100%;
+}
+
+.noBtn {
+  height: 2rem;
+  line-height: normal;
+}
+
+.yesBtn {
+  background-color: var(--heroAqua);
+  height: 2rem;
+  line-height: normal;
+}
+
+.ynBtnText {
+  font-family: var(--primaryFont);
+  font-size: var(--font-size-S)
+}
+
+.custom__select--btn:hover,
+.noBtn:hover {
+  background-color: var(--hoverOrange);
+}
+
+.custom__select--list {
+  /* listan med kategorier öppnas uppåt med bottom (fanns inte plats på sidan att öppnas nedåt) */
+  bottom: 100%;
+  display: none;
+  position: absolute;
+  width: 100%;
+  background-color: var(--primaryLight);
+  border: 1px solid var(--hoverOrangeText);
+  list-style: none;
+  border-radius: 6px;
+}
+
+.custom__select--list li {
+  padding: 0.3rem;
+  text-align: center;
+  cursor: pointer;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.custom__select--list li:hover {
+  color: var(--hoverAquaText);
+}
+
+.custom__select--list.open {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .new__note-btns {
+    grid-template-columns: (3, 1fr);
+  }
+}
+
+/* NEW NOTE PAGE------------------------------------------ */
+
+.create__note {
+  display: flex;
+  justify-content: space-between; /* horisontellt */
+  align-items: center; /* vertikalt */
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100vh;
+  padding: 70px 0 70px 0;
+}
+
+.create__note--header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+input::placeholder {
+  color: var(--primaryDark);
+  text-align: center;
+}
+
+input {
+  height: 4vh;
+  /* line-height: 4vh; */
+  /* sätt en standard-bredd (smidigt för mobil) men sätt också en max bredd för att det inte ska se konstigt ut på större skärm (gjort i media queries längre ner)*/
+  width: 70vw;
+  min-width: 300px;
+
+  text-align: center;
+  background-color: transparent;
+  /* border-radius: 6px; */
+  border: none;
+  border-bottom: 1px solid #291d0215;
+}
+
+textarea {
+  background-color: var(--textareaOrange);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem;
+  resize: none; /* förhindrar att användaren ändrar storleken */
+
+  /* sätt en standard-bredd (smidigt för mobil) men sätt också en max bredd för att det inte ska se konstigt ut på större skärm (gjort i media queries längre ner)*/
+  width: 90vw;
+  min-width: 300px;
+
+  height: 87%;
+}
+
+/* text-design för att skriva ny anteckning */
+.new__note {
+  text-align: center;
+  font-size: var(--font-size-S);
+  word-break: break-word;
+}
+
+textarea::placeholder {
+  color: var(--primaryDark);
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.new__note-btns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  width: 90vw;
+}
+
+/* reset för standard knapp-inställningar som vi inte vill ha längre, vill att save knappen ska se ut som select knapparna */
+button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  /* font-size: inherit; */
+  /* width: 300px; */
+}
+
+.custom__select--btn,
+button {
+  width: 100%;
+}
+
+.custom-select,
+button {
+  width: 100%;
+}
+
+.save__btn {
+  background-color: var(--heroAqua);
+}
+
+.save__btn:hover,
+.yesBtn:hover {
+  background-color: var(--hoverAqua);
+}
+
+/* POPUP----------------------------------- */
+
+.priority__popup,
+.saving__popup,
+.delete__popup,
+.markDone__popup {
+  display: none; /* dold som standard */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  background-color: var(--primaryLight);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  padding: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 400px;
+  height: 14rem;
+}
+
+.saving__popup,
+.delete__popup,
+.markDone__popup {
+  max-width: 300px;
+  height: 10rem;
+}
+
+.delete__popup,
+.markDone__popup {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete__popup--btns,
+.markDone__popup--btns {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.delete__popup--confirmation p,
+.markDone__popup--confirmation p {
+  margin-bottom: 0.5rem;
+  font-family: var(--accentFont);
+  text-align: center;
+}
+
+.saving__popup p {
+  font-family: var(--accentFont);
+  font-size: var(--font-size-S);
+}
+
+.saving__popup--confirmation {
+  text-align: center;
+}
+
+#priorityPopupList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  list-style: none;
+  width: 100%;
+}
+
+/* för att få mörkare bakgrund när popup kommer fram */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.priority__popup--title {
+  text-align: center;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* eftersom vi har annan font satt i * på all text så måste jag skriva över det om jag vill byta text genom att skriva klassnamn + elementtyp (p, h1, osv) och sen kan jag ändra texten */
+.priority__popup--title p {
+  font-family: var(--accentFont);
+  line-height: 3vh;
+}
+
+.priority__popup--alternatives {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.priority__popup--text {
+  font-size: var(--font-size-XS);
+}
+
+.veryImportant {
+  font-weight: var(--bold);
+}
+
+.important {
+  font-weight: var(--semiBold);
+}
+
+.priority__popup--card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.priority__popup--card:hover {
+  background-color: var(--textareaOrange);
+  border-radius: 6px;
+}
+
+/* detta här under ändras när skärmen är större än 768px: */
+@media (min-width: 768px) {
+  input {
+    max-width: 600px;
+  }
+  textarea {
+    max-width: 800px;
+  }
+  .new__note-btns {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 800px;
+  }
+}

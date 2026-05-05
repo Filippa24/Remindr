@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- för att kunna använda css i separat fil: -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- för att kunna använda ikoner -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- för att kunna få fonterna (via google fonts, välja alla du vill använda, de samlas i en kod:): -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Italiana&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="splash">
+      <div class="splash__title">Remindr</div>
+    </div>
+
+    <main class="content">
+      <div class="home">
+        <header class="home__navbar">
+          <div class="home__navbar--links">
+            <a aria-label="Add new task" class="addIcon" id="addIcon"
+              ><i class="fa-solid fa-plus" aria-hidden="true"></i
+            ></a>
+            <!-- <a aria-label="Edit existing task" id="editIcon"
+              ><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i
+            ></a> -->
+            <a aria-label="Delete task" class="deleteIcon" id="deleteIcon"
+              ><i class="fa-solid fa-minus" aria-hidden="true"></i
+            ></a>
+            <a
+              aria-label="Mark task as done"
+              class="markDoneIcon"
+              id="markDoneIcon"
+              ><i class="fa-solid fa-check" aria-hidden="true"></i
+            ></a>
+          </div>
+        </header>
+
+        <div class="guidelines__delete" id="guidelinesDelete">
+          <p>Select the note you want to delete.</p>
+        </div>
+        <div class="guidelines__markDone" id="guidelinesMarkDone">
+          <p>Select the note you want to mark as done.</p>
+        </div>
+
+        <section class="delete__popup" id="deletePopup">
+          <div class="delete__popup--confirmation">
+            <p></p>
+            <div class="delete__popup--btns">
+              <button class="yesBtn ynBtnText" id="deleteYesBtn">Yes</button>
+              <button class="noBtn ynBtnText" id="deleteNoBtn">No</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="markDone__popup" id="markDonePopup">
+          <div class="markDone__popup--confirmation">
+            <p></p>
+            <div class="markDone__popup--btns">
+              <!-- knapparna naedan fungerar inte, är det för att de heter samma i section ovan? -->
+              <!-- fixa vad som ska hända när man trycker på yes, då ska category ändras till done -->
+              <button class="yesBtn ynBtnText" id="markDoneYesBtn">Yes</button>
+              <button class="noBtn ynBtnText" id="markDoneNoBtn">No</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="notes">
+          <div class="notes__container">
+            <ul class="notes__list" id="notesList"></ul>
+          </div>
+        </section>
+
+        <div class="custom__select">
+          <div class="custom__select--btn custom__select--heading" id="sortBtn">
+            Sort
+          </div>
+          <ul class="custom__select--list" id="sortList">
+            <li class="custom__select--heading">All</li>
+            <li class="custom__select--heading">Done</li>
+            <li class="custom__select--heading">Shopping</li>
+            <li class="custom__select--heading">Studies</li>
+            <li class="custom__select--heading">Personal</li>
+            <li class="custom__select--heading">Work</li>
+            <li class="custom__select--heading">Very important</li>
+            <li class="custom__select--heading">Important</li>
+            <li class="custom__select--heading">Less important</li>
+          </ul>
+        </div>
+      </div>
+
+      <section class="create__note">
+        <div class="create__note--header">
+          <input
+            class="custom__select--heading"
+            type="text"
+            placeholder="Title"
+            required
+            maxlength="50"
+            id="createNoteTitle"
+          />
+        </div>
+
+        <textarea
+          class="new__note"
+          id="createNoteContent"
+          placeholder="Notes..."
+          rows="15"
+        ></textarea>
+
+        <div class="new__note-btns">
+          <div class="custom__select">
+            <div
+              class="custom__select--btn custom__select--heading"
+              id="categoryBtn"
+            >
+              Category
+            </div>
+            <ul class="custom__select--list" id="categoryList">
+              <li class="custom__select--heading">Shopping</li>
+              <li class="custom__select--heading">Studies</li>
+              <li class="custom__select--heading">Personal</li>
+              <li class="custom__select--heading">Work</li>
+              <li class="custom__select--heading">Done</li>
+            </ul>
+          </div>
+          <button
+            class="custom__select--btn btn custom__select--heading"
+            id="priorityBtn"
+          >
+            Prioritize
+          </button>
+          <button
+            class="custom__select--btn custom__select--heading save__btn"
+            id="saveBtn"
+          >
+            Save
+          </button>
+        </div>
+      </section>
+
+      <section class="priority__popup" id="priority-popup">
+        <div class="priority__popup--title">
+          <p>
+            Prioritize your notes.<br />
+            How important is this one?
+          </p>
+        </div>
+
+        <div class="priority__popup--alternatives">
+          <ul id="priorityPopupList">
+            <button class="priority__popup--card" value="Very important">
+              <img src="Media/VeryImportantEllipse.png" alt="VeryImportant" />
+              <p class="priority__popup--text veryImportant">Very important</p>
+            </button>
+
+            <button class="priority__popup--card" value="Important">
+              <img src="Media/ImportantEllipse.png" alt="Important" />
+              <p class="priority__popup--text important">Important</p>
+            </button>
+
+            <button class="priority__popup--card" value="Less important">
+              <img src="Media/LessImportantEllipse.png" alt="LessImportant" />
+              <p class="priority__popup--text lessImportant">Less important</p>
+            </button>
+          </ul>
+        </div>
+      </section>
+
+      <section class="saving__popup" id="savingPopup">
+        <div class="saving__popup--confirmation">
+          <p>Your note has been successfully saved.</p>
+        </div>
+      </section>
+    </main>
+
+    <div id="overlay"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
