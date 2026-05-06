@@ -14,7 +14,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
 
-    <!-- för att kunna få fonterna (via google fonts, välja alla du vill använda, de samlas i en kod:): -->
+    <!-- för att kunna få fonterna (via google fonts, välja alla du vill använda, de samlas i en rad kod:): -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,16 +28,13 @@
       <div class="splash__title">Remindr</div>
     </div>
 
-    <main class="content">
-      <div class="home">
+    <main class="content" id="content">
+      <div class="home" id="home">
         <header class="home__navbar">
           <div class="home__navbar--links">
             <a aria-label="Add new task" class="addIcon" id="addIcon"
               ><i class="fa-solid fa-plus" aria-hidden="true"></i
             ></a>
-            <!-- <a aria-label="Edit existing task" id="editIcon"
-              ><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i
-            ></a> -->
             <a aria-label="Delete task" class="deleteIcon" id="deleteIcon"
               ><i class="fa-solid fa-minus" aria-hidden="true"></i
             ></a>
@@ -71,8 +68,6 @@
           <div class="markDone__popup--confirmation">
             <p></p>
             <div class="markDone__popup--btns">
-              <!-- knapparna naedan fungerar inte, är det för att de heter samma i section ovan? -->
-              <!-- fixa vad som ska hända när man trycker på yes, då ska category ändras till done -->
               <button class="yesBtn ynBtnText" id="markDoneYesBtn">Yes</button>
               <button class="noBtn ynBtnText" id="markDoneNoBtn">No</button>
             </div>
@@ -85,11 +80,11 @@
           </div>
         </section>
 
-        <div class="custom__select">
+        <div class="custom__select" id="customSelect">
           <div class="custom__select--btn custom__select--heading" id="sortBtn">
             Sort
           </div>
-          <ul class="custom__select--list" id="sortList">
+          <ul class="custom__select--list" id="customSelectList">
             <li class="custom__select--heading">All</li>
             <li class="custom__select--heading">Done</li>
             <li class="custom__select--heading">Shopping</li>
@@ -103,7 +98,7 @@
         </div>
       </div>
 
-      <section class="create__note">
+      <section class="create__note" id="createNoteSection">
         <div class="create__note--header">
           <input
             class="custom__select--heading"
@@ -153,7 +148,7 @@
         </div>
       </section>
 
-      <section class="priority__popup" id="priority-popup">
+      <section class="priority__popup" id="priorityPopup">
         <div class="priority__popup--title">
           <p>
             Prioritize your notes.<br />
@@ -163,21 +158,31 @@
 
         <div class="priority__popup--alternatives">
           <ul id="priorityPopupList">
-            <button class="priority__popup--card" value="Very important">
+            <button class="priority__popup--card" id="priorityPopupCard" value="Very important">
               <img src="Media/VeryImportantEllipse.png" alt="VeryImportant" />
               <p class="priority__popup--text veryImportant">Very important</p>
             </button>
 
-            <button class="priority__popup--card" value="Important">
+            <button class="priority__popup--card" id="priorityPopupCard" value="Important">
               <img src="Media/ImportantEllipse.png" alt="Important" />
               <p class="priority__popup--text important">Important</p>
             </button>
 
-            <button class="priority__popup--card" value="Less important">
+            <button class="priority__popup--card" id="priorityPopupCard" value="Less important">
               <img src="Media/LessImportantEllipse.png" alt="LessImportant" />
               <p class="priority__popup--text lessImportant">Less important</p>
             </button>
           </ul>
+        </div>
+      </section>
+
+      <section class="savingFailed__popup" id="savingFailedPopup">
+        <div class="savingFailed__popup--confirmation">
+          <p>
+            Please write a title and note. Choose category and priority before
+            you click Save.
+          </p>
+          <button class="okBtn ynBtnText" id="okBtn">Ok</button>
         </div>
       </section>
 
