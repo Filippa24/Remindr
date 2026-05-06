@@ -2,14 +2,15 @@
 
 Remindr is a place to store and handle your notes. Add your notes to a category and help keep track of which to prioritize first by choosing one of three priority values. Mark notes as done or delete them when no longer needed.
 
-Remindr started as a simple school exercise but I got carried away so now it's on my GitHub. Designed in Figma. Written using JavaScript, HTML and CSS. Data is stored and managed through a local JSON Server that acts as a REST API. 
+Remindr started as a simple school exercise but I got carried away so now it's on my GitHub. 
+Designed in Figma. Written using JavaScript, HTML and CSS. Data is stored and managed through a local JSON Server that acts as a REST API. 
 
-This is the first version of Remindr. More features and improvements are already planned.
+This is the first version of Remindr. More features and improvements to come.
 
 ## Get started
 
-**Requirements:**
-Node.js installed
+**Requirements**
+- Node.js installed
 
 **Setup**
 1. Clone repository
